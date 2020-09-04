@@ -12,6 +12,7 @@ This Plugin can be used to remind users about the Concept Help Request feature i
 ### Prerequisites (If running the plugin locally)
 - Setup Mattermost server. [Click here](https://developers.mattermost.com/contribute/server/developer-setup/)
 - Setup Mattermost webapp. [Click here](https://developers.mattermost.com/contribute/webapp/developer-setup/)
+
 After settting up these two. You'll be able to run mattermost locally.
 
 ### Installing the Plugin
