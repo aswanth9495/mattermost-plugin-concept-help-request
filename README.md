@@ -1,4 +1,4 @@
-# Mattermost Concept help Reqquest 
+# Mattermost Concept help Request Plugin
 
 This Plugin can be used to remind users about the Concept Help Request feature in Scaler from Mattermost. And provide a direct link to raise a Concept Help Request from the Scaler Academy mentee dashboard.
 
