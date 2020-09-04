@@ -12,9 +12,9 @@ var manifest *model.Manifest
 
 const manifestStr = `
 {
-  "id": "com.mattermost.webapp-chr-creation",
-  "name": "CHR Creation Plugin",
-  "description": "This Plugin can be used to create Concept Help Request from Mattermost",
+  "id": "com.mattermost.chr-reminder-plugin",
+  "name": "Concept Help Request Reminder Plugin",
+  "description": "This Plugin can be used to remind users about the Concept Help Request feature in Scaler from Mattermost. And provide a direct link to raise a CHR",
   "version": "0.1.0",
   "min_server_version": "5.12.0",
   "server": {
@@ -33,7 +33,7 @@ const manifestStr = `
         "key": "ChrTriggerWords",
         "display_name": "CHR Trigger words",
         "type": "longtext",
-        "help_text": "The words to be considered as Triggers for the CHR creation bot",
+        "help_text": "The words to be considered as Triggers for the CH",
         "placeholder": "",
         "default": "Doubt ? what when how would"
       }

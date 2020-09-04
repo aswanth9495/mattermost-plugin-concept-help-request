@@ -1,117 +1,46 @@
-# Plugin Starter Template [![CircleCI branch](https://img.shields.io/circleci/project/github/mattermost/mattermost-plugin-starter-template/master.svg)](https://circleci.com/gh/mattermost/mattermost-plugin-starter-template)
+# Mattermost Concept help Reqquest 
 
-This plugin serves as a starting point for writing a Mattermost plugin. Feel free to base your own plugin off this repository.
+This Plugin can be used to remind users about the Concept Help Request feature in Scaler from Mattermost. And provide a direct link to raise a Concept Help Request from the Scaler Academy mentee dashboard.
 
-To learn more about plugins, see [our plugin documentation](https://developers.mattermost.com/extend/plugins/).
+# How does it work ?
+- The settings of Plugin accepts certain trigger words. The admin can fill the required trigger words depending on the probability that it is related to a concept help request. (Eg: Doubt How when CHR Concept Conceptual Topic Help)
+- Whenever the user types any of the trigger words in the message if he/she submits it, they'll get a ephemeral message (A message which is only visible to user and goes away after sometime).
+- The ephemeral message (Shared in the screenshot section) will ask the mentee if he has any doubt and will have direct link to raise the Concept help Request from the Scaler academy dashboard
 
-## Getting Started
-Use GitHub's template feature to make a copy of this repository by clicking the "Use this template" button.
+# Installation
 
-Alternatively shallow clone the repository matching your plugin name:
+### Prerequisites (If running the plugin locally)
+- Setup Mattermost server. [Click here](https://developers.mattermost.com/contribute/server/developer-setup/)
+- Setup Mattermost webapp. [Click here](https://developers.mattermost.com/contribute/webapp/developer-setup/)
+After settting up these two. You'll be able to run mattermost locally.
+
+### Installing the Plugin
+- Clone the repo
+- Set the following environment variables
 ```
-git clone --depth 1 https://github.com/mattermost/mattermost-plugin-starter-template com.example.my-plugin
+export MM_SERVICESETTINGS_SITEURL=<your_local_mattermost_site_url>
+export MM_ADMIN_USERNAME=<username_in_mattermost>
+export MM_ADMIN_PASSWORD=<password_in_mattermost>
 ```
+- Run `make deploy` inside the plugin directory
 
-Note that this project uses [Go modules](https://github.com/golang/go/wiki/Modules). Be sure to locate the project outside of `$GOPATH`.
+You plugin will be installed and enabled now.
 
-Edit `plugin.json` with your `id`, `name`, and `description`:
-```
-{
-    "id": "com.example.my-plugin",
-    "name": "My Plugin",
-    "description": "A plugin to enhance Mattermost."
-}
-```
+If you want to install the plugin on a different mattermost server.
 
-Build your plugin:
-```
-make
-```
+- Run `make` inside the plugin directory
+- You can find `com.mattermost.chr-reminder-plugin-0.1.0.tar.gz` inside the `dist` folder
+- Follow these steps after that
 
-This will produce a single plugin file (with support for multiple architectures) for upload to your Mattermost server:
+Through System Console UI:
 
-```
-dist/com.example.my-plugin.tar.gz
-```
+- Log in to Mattermost as a System Admin.
+- Open the System Console at /admin_console
+- Navigate to Plugins (Beta) > Management and upload the plugin.tar.gz you generated above.
+- Click Enable under the plugin after it has uploaded.
 
-## Development
-
-To avoid having to manually install your plugin, build and deploy your plugin using one of the following options.
-
-### Deploying with Local Mode
-
-If your Mattermost server is running locally, you can enable [local mode](https://docs.mattermost.com/administration/mmctl-cli-tool.html#local-mode) to streamline deploying your plugin. Edit your server configuration as follows:
-
-```json
-{
-    "ServiceSettings": {
-        ...
-        "EnableLocalMode": true,
-        "LocalModeSocketLocation": "/var/tmp/mattermost_local.socket"
-    }
-}
-```
-
-and then deploy your plugin:
-```
-make deploy
-```
-
-You may also customize the Unix socket path:
-```
-export MM_LOCALSOCKETPATH=/var/tmp/alternate_local.socket
-make deploy
-```
-
-If developing a plugin with a webapp, watch for changes and deploy those automatically:
-```
-export MM_SERVICESETTINGS_SITEURL=http://localhost:8065
-export MM_ADMIN_TOKEN=j44acwd8obn78cdcx7koid4jkr
-make watch
-```
-
-### Deploying with credentials
-
-Alternatively, you can authenticate with the server's API with credentials:
-```
-export MM_SERVICESETTINGS_SITEURL=http://localhost:8065
-export MM_ADMIN_USERNAME=admin
-export MM_ADMIN_PASSWORD=password
-make deploy
-```
-
-or with a [personal access token](https://docs.mattermost.com/developer/personal-access-tokens.html):
-```
-export MM_SERVICESETTINGS_SITEURL=http://localhost:8065
-export MM_ADMIN_TOKEN=j44acwd8obn78cdcx7koid4jkr
-make deploy
-```
-
-## Q&A
-
-### How do I make a server-only or web app-only plugin?
-
-Simply delete the `server` or `webapp` folders and remove the corresponding sections from `plugin.json`. The build scripts will skip the missing portions automatically.
-
-### How do I include assets in the plugin bundle?
-
-Place them into the `assets` directory. To use an asset at runtime, build the path to your asset and open as a regular file:
-
-```go
-bundlePath, err := p.API.GetBundlePath()
-if err != nil {
-    return errors.Wrap(err, "failed to get bundle path")
-}
-
-profileImage, err := ioutil.ReadFile(filepath.Join(bundlePath, "assets", "profile_image.png"))
-if err != nil {
-    return errors.Wrap(err, "failed to read profile image")
-}
-
-if appErr := p.API.SetProfileImage(userID, profileImage); appErr != nil {
-    return errors.Wrap(err, "failed to set profile image")
-}
-```
-
-### How do I build the plugin with unminified JavaScript?
-Setting the `MM_DEBUG` environment variable will invoke the debug builds. The simplist way to do this is to simply include this variable in your calls to `make` (e.g. `make dist MM_DEBUG=1`).
+# Screenshots 
+The settings page
+![Settings page](screenshots/settings.png)
+Ephemeral message sent when the trigger word is found
+![Message](screenshots/message.jpg)
