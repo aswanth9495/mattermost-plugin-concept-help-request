@@ -2,7 +2,10 @@ package main
 
 import (
 	"reflect"
+	"strings"
 
+	"github.com/mattermost/mattermost-server/v5/model"
+	"github.com/mattermost/mattermost-server/v5/plugin"
 	"github.com/pkg/errors"
 )
 
@@ -18,6 +21,7 @@ import (
 // If you add non-reference types to your configuration struct, be sure to rewrite Clone as a deep
 // copy appropriate for your types.
 type configuration struct {
+	ChrTriggerWords string
 }
 
 // Clone shallow copies the configuration. Your implementation may require a deep copy if
@@ -79,5 +83,23 @@ func (p *Plugin) OnConfigurationChange() error {
 
 	p.setConfiguration(configuration)
 
+	// Create or update a BOT
+	botID, ensureBotError := p.Helpers.EnsureBot(&model.Bot{
+		Username:    "chr_bot",
+		DisplayName: "Concept Help Request Bot",
+		Description: "A bot account for creating concept Help Request.",
+	}, plugin.IconImagePath("/assets/scaler.svg"))
+
+	if ensureBotError != nil {
+		return errors.Wrap(ensureBotError, "failed to ensure CHR Bot.")
+	}
+	p.botID = botID
+
+	// make hash of trigger words
+	chrTriggerWordsFromSettings := strings.Split(configuration.ChrTriggerWords, " ")
+	p.triggerWords = make(map[string]bool, len(chrTriggerWordsFromSettings))
+	for _, word := range chrTriggerWordsFromSettings {
+		p.triggerWords[strings.ToLower(word)] = true
+	}
 	return nil
 }

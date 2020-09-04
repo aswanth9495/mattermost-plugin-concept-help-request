@@ -2,9 +2,9 @@
 
 const manifest = JSON.parse(`
 {
-    "id": "com.mattermost.plugin-starter-template",
-    "name": "Plugin Starter Template",
-    "description": "This plugin serves as a starting point for writing a Mattermost plugin.",
+    "id": "com.mattermost.webapp-chr-creation",
+    "name": "CHR Creation Plugin",
+    "description": "This Plugin can be used to create Concept Help Request from Mattermost",
     "version": "0.1.0",
     "min_server_version": "5.12.0",
     "server": {
@@ -19,9 +19,18 @@ const manifest = JSON.parse(`
         "bundle_path": "webapp/dist/main.js"
     },
     "settings_schema": {
-        "header": "",
-        "footer": "",
-        "settings": []
+        "header": "The settings page of CHR creation plugin",
+        "footer": "Made with \u003c3 by Scaler",
+        "settings": [
+            {
+                "key": "ChrTriggerWords",
+                "display_name": "CHR Trigger words",
+                "type": "longtext",
+                "help_text": "The words to be considered as Triggers for the CHR creation bot",
+                "placeholder": "",
+                "default": "Doubt ? what when how would"
+            }
+        ]
     }
 }
 `);

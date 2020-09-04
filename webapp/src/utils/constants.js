@@ -1,0 +1,1 @@
+export const pluginId = 'com.mattermost.webapp-chr-creation';
