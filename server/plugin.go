@@ -50,12 +50,12 @@ func (p *Plugin) modifyMessage(post *model.Post) (*model.Post, string) {
 						"fallback": "test",
 						"color": "#FF8000",
 						"pretext": "Seems like you have a Doubt! :thinking:. You can click on **Raise Concept Help Request** link below to raise a Concept help Request",
-						"text": "Now, you can ask doubts for any concept and get them answered by getting on a 1-1 live call of < 15 minutes with the helper/TA.",
+						"text": "Now, you can ask doubts for any concept and get them answered by getting on a **1-1 live call of ~ 15 minutes with the helper/TA**.",
 						"author_name": "Scaler",
 						"author_icon": "https://assets.scaler.com/assets/academy/scalar-chat-icon-7dc8c6cce5bc388bd2ce9de1d347df05e5999d50d1b3a50ed910c93a97d97eca.png",
 						"author_link": "http://www.scaler.com",
 						"title": "Raise Concept Help Request",
-						"title_link": "http://www.scaler.com",
+						"title_link": "http://www.scaler.com/academy/mentee-dashboard/mentee_help_request_dashboard/?ref=open-chr-modal",
 						"image_url": "https://assets.scaler.com/assets/academy/help_requests/bulb_question-57932b17f7273b95ad9b9bc23e8880437e35ad616927f09a1ad9c613372c5e18.png"
 					}
 				]
@@ -74,6 +74,10 @@ func (p *Plugin) modifyMessage(post *model.Post) (*model.Post, string) {
 }
 
 func (p *Plugin) MessageWillBePosted(_ *plugin.Context, post *model.Post) (*model.Post, string) {
+	return p.modifyMessage(post)
+}
+
+func (p *Plugin) MessageWillBeUpdated(_ *plugin.Context, post *model.Post) (*model.Post, string) {
 	return p.modifyMessage(post)
 }
 

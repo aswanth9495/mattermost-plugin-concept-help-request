@@ -25,9 +25,6 @@ const manifestStr = `
     },
     "executable": ""
   },
-  "webapp": {
-    "bundle_path": "webapp/dist/main.js"
-  },
   "settings_schema": {
     "header": "The settings page of CHR creation plugin",
     "footer": "Made with \u003c3 by Scaler",
