@@ -42,6 +42,6 @@ Through System Console UI:
 
 # Screenshots 
 The settings page
-![Settings page](screenshots/settings.png)
+![Settings page](screenshots/settings.jpg)
 Ephemeral message sent when the trigger word is found
 ![Message](screenshots/message.jpg)
