@@ -21,7 +21,8 @@ import (
 // If you add non-reference types to your configuration struct, be sure to rewrite Clone as a deep
 // copy appropriate for your types.
 type configuration struct {
-	ChrTriggerWords string
+	ChrTriggerWords   string
+	ProbabilityFactor int
 }
 
 // Clone shallow copies the configuration. Your implementation may require a deep copy if
@@ -101,5 +102,6 @@ func (p *Plugin) OnConfigurationChange() error {
 	for _, word := range chrTriggerWordsFromSettings {
 		p.triggerWords[strings.ToLower(word)] = true
 	}
+	p.probabilityFactor = configuration.ProbabilityFactor
 	return nil
 }

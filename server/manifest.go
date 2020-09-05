@@ -33,9 +33,17 @@ const manifestStr = `
         "key": "ChrTriggerWords",
         "display_name": "CHR Trigger words",
         "type": "longtext",
-        "help_text": "The words to be considered as Triggers for the CH",
+        "help_text": "The words to be considered as Triggers for the CHR",
         "placeholder": "",
         "default": "Doubt ? what when how would"
+      },
+      {
+        "key": "ProbabilityFactor",
+        "display_name": "Probaility Factor",
+        "type": "number",
+        "help_text": "The Probability factor is the % probability of triggering the reminder message. (Note: Should be an integer)",
+        "placeholder": "",
+        "default": "5"
       }
     ]
   }
