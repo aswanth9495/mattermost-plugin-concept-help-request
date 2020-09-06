@@ -17,15 +17,15 @@
             "key": "ChrTriggerSentences",
               "display_name": "CHR Triggers",
               "type": "longtext",
-              "help_text": "The words to be considered as Triggers for the CHR",
-              "default": "Doubt ? what when how concept topic help request"
+              "help_text": "The sentences to be considered as Triggers for the CHR",
+              "default": ""
             },
             {
                 "key": "ProbabilityFactor",
                 "display_name": "Probaility Factor",
                 "type": "number",
                 "help_text": "The Probability factor is the % probability of triggering the reminder message. (Note: it should be an integer)",
-                "default": "20"
+                "default": "50"
             }
           ],
           "header": "The settings page of CHR creation plugin",
