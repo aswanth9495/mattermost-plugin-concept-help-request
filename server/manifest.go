@@ -30,20 +30,20 @@ const manifestStr = `
     "footer": "Made with \u003c3 by Scaler",
     "settings": [
       {
-        "key": "ChrTriggerWords",
-        "display_name": "CHR Trigger words",
+        "key": "ChrTriggerSentences",
+        "display_name": "CHR Triggers",
         "type": "longtext",
         "help_text": "The words to be considered as Triggers for the CHR",
         "placeholder": "",
-        "default": "Doubt ? what when how would"
+        "default": "Doubt ? what when how concept topic help request"
       },
       {
         "key": "ProbabilityFactor",
         "display_name": "Probaility Factor",
         "type": "number",
-        "help_text": "The Probability factor is the % probability of triggering the reminder message. (Note: Should be an integer)",
+        "help_text": "The Probability factor is the % probability of triggering the reminder message. (Note: it should be an integer)",
         "placeholder": "",
-        "default": "5"
+        "default": "20"
       }
     ]
   }

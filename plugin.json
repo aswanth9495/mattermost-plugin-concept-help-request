@@ -14,8 +14,8 @@
     "settings_schema": {
         "settings": [
             {
-            "key": "ChrTriggerWords",
-              "display_name": "CHR Trigger words",
+            "key": "ChrTriggerSentences",
+              "display_name": "CHR Triggers",
               "type": "longtext",
               "help_text": "The words to be considered as Triggers for the CHR",
               "default": "Doubt ? what when how concept topic help request"
