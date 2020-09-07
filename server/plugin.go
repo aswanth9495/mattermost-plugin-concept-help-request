@@ -65,9 +65,21 @@ func (p *Plugin) modifyMessage(post *model.Post) (*model.Post, string) {
 					},
 				},
 			}
+
 			p.API.SendEphemeralPost(post.UserId, ephemeralPost)
 			// Tracking for no of times we've sent the trigger message
 			p.IncrementTrackingCount("chr_message_trigger_count")
+			// Tracking for the user the the trigger message have been sent to
+			postedUserName, _ := p.API.GetUser(post.UserId)
+			p.IncrementTrackingCount("chr_trigr_usr_" + postedUserName.Username)
+			// Tracking for the channel the trigger message have been sent to
+			p.IncrementTrackingCount("chr_trigr_chnl_" + post.ChannelId)
+
+			postedChannel, err := p.API.GetChannel(post.ChannelId)
+			if postedChannel.TeamId != "" && err == nil {
+				// Tracking for the team the trigger message have been sent to
+				p.IncrementTrackingCount("chr_trigr_team_" + postedChannel.TeamId)
+			}
 			return post, ""
 		}
 		return post, ""
